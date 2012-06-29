@@ -65,13 +65,109 @@ $PAGE->set_context($context);
 
 // Output starts here
 echo $OUTPUT->header();
-
-if ($qcardloader->intro) { // Conditions to show the intro can change to look for own settings or whatever
-    echo $OUTPUT->box(format_module_intro('qcardloader', $qcardloader, $cm->id), 'generalbox mod_introbox', 'qcardloaderintro');
-}
-
 // Replace the following lines with you own code
 echo $OUTPUT->heading('Yay! It works!');
+echo"<script src='js/multifile.js'></script>";
 
+
+
+//if ($qcardloader->intro) { // Conditions to show the intro can change to look for own settings or whatever
+//    echo $OUTPUT->box(format_module_intro('qcardloader', $qcardloader, $cm->id), 'generalbox mod_introbox', 'qcardloaderintro');
+//}
+
+
+
+global $DB;
+
+echo "<button onclick='console.log(\"HELLO\")'>Upload new file</button>";
+
+$fs = get_file_storage();
+    
+print_object($fs);
+    
+echo "<input type='file' multiple >\n";
+
+echo"<BR><BR><BR><BR>";
+
+
+
+
+//	<!-- The file element -- NOTE: it has an ID -->
+echo"<form enctype='multipart/form-data' action='your_script_here.script' method = 'post'>
+
+	<input id='my_file_element' type='file' name='file_1'>
+	<input type='submit'>
+</form>";
+echo"Files:";
+
+echo"<div id='files_list'></div>";
+
+echo <<<SCRIPT
+<script type='text/javascript'>
+	var multi_selector = new MultiSelector( document.getElementById( 'files_list' ), 5 );
+	multi_selector.addElement( document.getElementById( 'my_file_element' ) );
+</script>
+SCRIPT;
+
+
+
+
+$fs = get_file_storage();
+ 
+// Prepare file record object
+$fileinfo = array(
+    'contextid' => $context->id, // ID of context
+    'component' => 'mod_qcardloader',     // usually = table name
+    'filearea' => 'qcardloader',     // usually = table name
+    'itemid' => 0,               // usually = ID of row in table
+    'filepath' => '/',           // any path beginning and ending in /
+    'filename' => 'testdata1.txt'); // any filename
+ 
+// Create file containing text 'hello world'
+$fs->create_file_from_pathname($fileinfo, 'hello world');
+
+
+
+    
 // Finish the page
 echo $OUTPUT->footer();
+
+
+//function vidtrans_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload) {
+//
+//	global $DB, $CFG;
+//
+//    $fileinfo = array(
+//        'component' => 'mod_vidtrans', // usually = table name
+//        'filearea' => $filearea, // usually = table name
+//        'itemid' => $args[1], // usually = ID of row in table
+//        'contextid' => $context->id, // ID of context
+//        'filepath' => '/' . $args[0] . '/', // any path beginning and ending in /
+//        'filename' => $args[2]); // any filename
+//
+//    $fs = get_file_storage();
+//    $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'], $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);
+//
+//    header("Content-Type: " . $file->get_mimetype());
+//    header("Content-Length: " . $file->get_filesize());
+//
+//    $file->readfile();
+//
+//
+//    die();
+//}
+//
+//---
+//To force a file download:
+//
+//$file_address = $CFG->wwwroot . '/pluginfile.php/' . $file->get_contextid()
+//                    . '/' . $file->get_component() . '/' . $file->get_filearea()
+//                    . '/' . $file->get_filepath() . $file->get_itemid()
+//                    . '/' . $file->get_filename();
+//					
+//output the header:
+//header('location: ' . $file_address);
+//		http://us.battle.net/d3/en/forum/topic/5889888966
+//		
+//		
+//		    header("Content-Disposition: attachment; filename='{$fileinfo['filename']}'");

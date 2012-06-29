@@ -150,6 +150,42 @@ function xmldb_qcardloader_upgrade($oldversion) {
 
         upgrade_mod_savepoint(true, 2007040200, 'qcardloader');
     }
+    
+//       if ($oldversion < 2012062900) {
+//
+//                // Define table mynotebook to be created
+//        $table = new xmldb_table('qcardloader');
+//
+//        // Adding fields to table mynotebook
+//        $table->add_field('id', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
+//        $table->add_field('course', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, null);
+//        $table->add_field('name', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null);
+//        $table->add_field('intro', XMLDB_TYPE_TEXT, 'medium', null, null, null, null);
+//        $table->add_field('introformat', XMLDB_TYPE_INTEGER, '4', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0');
+//        $table->add_field('timecreated', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, null);
+//        $table->add_field('timemodified', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, '0');
+//        
+//        $table->add_field('filename', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null);
+//        $table->add_field('userid', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, null);
+//        $table->add_field('filesize', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, null);
+//        $table->add_field('filetype', XMLDB_TYPE_CHAR, '255', null, XMLDB_NOTNULL, null, null);
+//        $table->add_field('itemid', XMLDB_TYPE_INTEGER, '10', XMLDB_UNSIGNED, XMLDB_NOTNULL, null, null);
+//
+//
+//        // Adding keys to table mynotebook
+//        $table->add_key('primary', XMLDB_KEY_PRIMARY, array('id'));
+//
+//        // Adding indexes to table mynotebook
+//        $table->add_index('course', XMLDB_INDEX_NOTUNIQUE, array('course'));
+//
+//        // Conditionally launch create table for mynotebook
+//        if (!$dbman->table_exists($table)) {
+//            $dbman->create_table($table);
+//        }
+//
+//        // mynotebook savepoint reached
+//        upgrade_mod_savepoint(true, 2012062900, 'qcardloader');
+//    }
 
     // And that's all. Please, examine and understand the 3 example blocks above. Also
     // it's interesting to look how other modules are using this script. Remember that
