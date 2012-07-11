@@ -28,7 +28,8 @@ $(function () {
         )
     );
 
-    if (window.location.hostname === 'blueimp.github.com') {
+    if (window.location.hostname === 'localhost') {
+        console.log("TRUE");
         // Demo settings:
         $('#fileupload').fileupload('option', {
             url: '//jquery-file-upload.appspot.com/',
@@ -62,17 +63,19 @@ $(function () {
                     .appendTo('#fileupload');
             });
         }
-    } else {
-        // Load existing files:
-        $('#fileupload').each(function () {
-            var that = this;
-            $.getJSON(this.action, function (result) {
-                if (result && result.length) {
-                    $(that).fileupload('option', 'done')
-                        .call(that, null, {result: result});
-                }
-            });
-        });
-    }
+    } 
+//    else {
+//        // Load existing files:
+//        $('#fileupload').each(function () {
+//            var that = this;
+//            $.getJSON(this.action, function (result) {
+//                if (result && result.length) {
+//                    $(that).fileupload('option', 'done')
+//                        .call(that, null, {result: result});
+//                }
+//            });
+//        });
+//        console.log("FALSE");
+//    }
 
 });
