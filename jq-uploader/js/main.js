@@ -32,6 +32,7 @@ $(function () {
         console.log("TRUE");
         // Demo settings:
         $('#fileupload').fileupload('option', {
+            //If url is not included, it will cause error: "SyntaxError: Unexpected token <"
             url: '//jquery-file-upload.appspot.com/',
             maxFileSize: 5000000,
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,

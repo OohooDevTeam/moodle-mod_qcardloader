@@ -51,6 +51,8 @@ if ($id) {
 require_login($course, true, $cm);
 $context = get_context_instance(CONTEXT_MODULE, $cm->id);
 
+print_object($context);
+
 //add_to_log($course->id, 'qcardloader', 'view', "view.php?id={$cm->id}", $qcardloader->name, $cm->id);
 /// Print the page header
 
@@ -58,7 +60,6 @@ $PAGE->set_url('/mod/qcardloader/view.php', array('id' => $cm->id));
 $PAGE->set_title(format_string($qcardloader->name));
 $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
-
 
 //$PAGE->requires->css('/mod/qcardloader/jq-uploader/css/style.css');
 //$PAGE->requires->css('/mod/qcardloader/jq-uploader/css/jquery.fileupload-ui.css.css');
@@ -78,81 +79,64 @@ $PAGE->requires->css('/mod/qcardloader/jq-uploader/css/jquery.fileupload-ui.css'
 
 
 
-// other things you may want to set - remove if not needed
-//$PAGE->set_cacheable(false);
-//$PAGE->set_focuscontrol('some-html-id');
-//$PAGE->add_body_class('qcardloader-'.$somevar);
 // Output starts here
 echo $OUTPUT->header();
-// Replace the following lines with you own code
-//echo $OUTPUT->heading('Yay! It works!');
-//if ($qcardloader->intro) { // Conditions to show the intro can change to look for own settings or whatever
-//    echo $OUTPUT->box(format_module_intro('qcardloader', $qcardloader, $cm->id), 'generalbox mod_introbox', 'qcardloaderintro');
-//}
-//echo "<button onclick='console.log(\"HELLO\")'>Upload new file</button>";
-//$fs = get_file_storage();
-//    
-//print_object($fs);
-//echo "<input type='file' multiple >\n";
-//
-//
-//
-//
-//echo"<BR><BR><BR><BR>";
+
 //	<!-- The file element -- NOTE: it has an ID -->
 //Uploading mulitple files using one input field
-echo"<form enctype='multipart/form-data' action='store_file.php' method = 'POST' id='fileupload'>
+echo"<form enctype='multipart/form-data' action='store_file.php?contextid=$context->id' method = 'POST' id='fileupload'>";
 
-	<input id='my_file_element' type='file' name='file[]' multiple>
-	<input type='submit'>
-        
-<BR><BR><BR><BR>
+echo"	<input id='my_file_element' type='file' name='file[]' multiple>";
+echo"	<input type='submit'>";
+       
 
-        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-        <div class='row fileupload-buttonbar'>
-            <div class='span7'>
-            
-                <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class='btn btn-success fileinput-button'>
-                    <i class='icon-plus icon-white'></i>
-                    <span>Add files...</span>
-                    <input type='file' name='files[]' multiple>
-                </span>
-                <button type='submit' class='btn btn-primary start'>
-                    <i class='icon-upload icon-white'></i>
-                    <span>Start upload</span>
-                </button>
-                <button type='reset' class='btn btn-warning cancel'>
-                    <i class='icon-ban-circle icon-white'></i>
-                    <span>Cancel upload</span>
-                </button>
-                <button type='button' class='btn btn-danger delete'>
-                    <i class='icon-trash icon-white'></i>
-                    <span>Delete</span>
-                </button>
-                <input type='checkbox' class='toggle'>
-            </div>
-            
-            <!-- The global progress information -->
-            <div class='span5 fileupload-progress fade'>
-                <!-- The global progress bar -->
-                <div class='progress progress-success progress-striped active' role='progressbar' aria-valuemin='0' aria-valuemax='100'>
-                    <div class='bar' style='width:0%;'></div>
-                </div>
-                
-                <!-- The extended global progress information -->
-                <div class='progress-extended'>&nbsp;</div>
-            </div>
-        </div>
-        
-        <!-- The loading indicator is shown during file processing -->
-        <div class='fileupload-loading'></div>
-        <br>
-        
-        <!-- The table listing the files available for upload/download -->
-        <table role='presentation' class='table table-striped'><tbody class='files' data-toggle='modal-gallery' data-target='#modal-gallery'></tbody></table>
-</form>";
+    
+echo"<BR><BR><BR><BR>";
 
+////echo"        <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->";
+//echo"        <div class='row fileupload-buttonbar'>";
+//echo"            <div class='span7'>";
+//            
+////echo"               <!-- The fileinput-button span is used to style the file input field as button -->";
+//echo"                <span class='btn btn-success fileinput-button'>";
+//echo"                    <i class='icon-plus icon-white'></i>";
+//echo"                    <span>Add files...</span>";
+//echo"                    <input type='file' name='files[]' multiple>";
+//echo"                </span>";
+//echo"                <button type='submit' class='btn btn-primary start'>";
+//echo"                    <i class='icon-upload icon-white'></i>";
+//echo"                    <span>Start upload</span>";
+//echo"                </button>";
+//echo"                <button type='reset' class='btn btn-warning cancel'>";
+//echo"                    <i class='icon-ban-circle icon-white'></i>";
+//echo"                    <span>Cancel upload</span>";
+//echo"                </button>";
+//echo"                <button type='button' class='btn btn-danger delete'>";
+//echo"                    <i class='icon-trash icon-white'></i>";
+//echo"                    <span>Delete</span>";
+//echo"                </button>";
+//echo"                <input type='checkbox' class='toggle'>";
+//echo"            </div>";
+//            
+////echo"            <!-- The global progress information -->";
+//echo"            <div class='span5 fileupload-progress fade'>";
+////echo"                <!-- The global progress bar -->";
+//echo"                <div class='progress progress-success progress-striped active' role='progressbar' aria-valuemin='0' aria-valuemax='100'>";
+//echo"                    <div class='bar' style='width:0%;'></div>";
+//echo"                </div>";
+//                
+////echo"                <!-- The extended global progress information -->";
+//echo"                <div class='progress-extended'>&nbsp;</div>";
+//echo"            </div>";
+//echo"        </div>";
+//        
+////echo"        <!-- The loading indicator is shown during file processing -->";
+//echo"        <div class='fileupload-loading'></div>";
+//echo"        <br>";
+//        
+////echo"        <!-- The table listing the files available for upload/download -->";
+//echo"        <table role='presentation' class='table table-striped'><tbody class='files' data-toggle='modal-gallery' data-target='#modal-gallery'></tbody></table>";
+echo"</form>";
 
 
 //echo"Files:";
@@ -166,138 +150,106 @@ echo"<form enctype='multipart/form-data' action='store_file.php' method = 'POST'
 //SCRIPT;
 // Finish the page
 echo $OUTPUT->footer();
-
-echo'<script id="template-upload" type="text/x-tmpl">
-{% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-upload fade">
-        <td class="preview"><span class="fade"></span></td>
-        <td class="name"><span>{%=file.name%}</span></td>
-        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-        {% if (file.error) { %}
-            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
-        {% } else if (o.files.valid && !i) { %}
-            <td>
-                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
-            </td>
-            <td class="start">{% if (!o.options.autoUpload) { %}
-                <button class="btn btn-primary">
-                    <i class="icon-upload icon-white"></i>
-                    <span>{%=locale.fileupload.start%}</span>
-                </button>
-            {% } %}</td>
-        {% } else { %}
-            <td colspan="2"></td>
-        {% } %}
-        <td class="cancel">{% if (!i) { %}
-            <button class="btn btn-warning">
-                <i class="icon-ban-circle icon-white"></i>
-                <span>{%=locale.fileupload.cancel%}</span>
-            </button>
-        {% } %}</td>
-    </tr>
-{% } %}
-</script>';
-//<!-- The template to display files available for download -->
-
-echo'<script id="template-download" type="text/x-tmpl">
-{% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-download fade">
-        {% if (file.error) { %}
-            <td></td>
-            <td class="name"><span>{%=file.name%}</span></td>
-            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
-        {% } else { %}
-            <td class="preview">{% if (file.thumbnail_url) { %}
-                <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
-            {% } %}</td>
-            <td class="name">
-                <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&\'gallery\'%}" download="{%=file.name%}">{%=file.name%}</a>
-            </td>
-            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-            <td colspan="2"></td>
-        {% } %}
-        <td class="delete">
-            <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
-                <i class="icon-trash icon-white"></i>
-                <span>{%=locale.fileupload.destroy%}</span>
-            </button>
-            <input type="checkbox" name="delete" value="1">
-        </td>
-    </tr>
-{% } %}
-</script>';
-
-echo'<script src="../qcardloader/js/jquery-1.7.2.js"></script>
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-
-<script src="../qcardloader/jq-uploader/js/vendor/jquery.ui.widget.js"></script>
-
-<!-- The Templates plugin is included to render the upload/download listings -->
-<script src="../qcardloader/jq-uploader/js/downloaded/tmpl.min.js"></script>
-
-<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-<script src="../qcardloader/jq-uploader/js/downloaded/load-image.min.js"></script>
-
-<!-- The Canvas to Blob plugin is included for image resizing functionality -->
-<script src="../qcardloader/jq-uploader/js/downloaded/canvas-to-blob.min.js"></script>
-
-<!-- Bootstrap JS and Bootstrap Image Gallery are not required, but included for the demo -->
-<script src="../qcardloader/jq-uploader/js/downloaded/bootstrap.min.js"></script>
-
-<script src="../qcardloader/jq-uploader/js/downloaded/bootstrap-image-gallery.min.js"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-
-
-<script src="../qcardloader/jq-uploader/js/jquery.iframe-transport.js"></script>
-<!-- The basic File Upload plugin -->
-<script src="../qcardloader/jq-uploader/js/jquery.fileupload.js"></script>
-<!-- The File Upload file processing plugin -->
-<script src="../qcardloader/jq-uploader/js/jquery.fileupload-fp.js"></script>
-<!-- The File Upload user interface plugin -->
-<script src="../qcardloader/jq-uploader/js/jquery.fileupload-ui.js"></script>
-<!-- The localization script -->
-<script src="../qcardloader/jq-uploader/js/locale.js"></script>
-<!-- The main application script -->
-<script src="../qcardloader/jq-uploader/js/main.js"></script>';
-
-
-
-//function vidtrans_pluginfile($course, $cm, $context, $filearea, array $args, $forcedownload) {
 //
-//	global $DB, $CFG;
+//echo'<script id="template-upload" type="text/x-tmpl">
+//{% for (var i=0, file; file=o.files[i]; i++) { %}
+//    <tr class="template-upload fade">
+//        <td class="preview"><span class="fade"></span></td>
+//        <td class="name"><span>{%=file.name%}</span></td>
+//        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+//        {% if (file.error) { %}
+//            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+//        {% } else if (o.files.valid && !i) { %}
+//            <td>
+//                <div class="progress progress-success progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="bar" style="width:0%;"></div></div>
+//            </td>
+//            <td class="start">{% if (!o.options.autoUpload) { %}
+//                <button class="btn btn-primary">
+//                    <i class="icon-upload icon-white"></i>
+//                    <span>{%=locale.fileupload.start%}</span>
+//                </button>
+//            {% } %}</td>
+//        {% } else { %}
+//            <td colspan="2"></td>
+//        {% } %}
+//        <td class="cancel">{% if (!i) { %}
+//            <button class="btn btn-warning">
+//                <i class="icon-ban-circle icon-white"></i>
+//                <span>{%=locale.fileupload.cancel%}</span>
+//            </button>
+//        {% } %}</td>
+//    </tr>
+//{% } %}
+//</script>';
+////<!-- The template to display files available for download -->
 //
-//    $fileinfo = array(
-//        'component' => 'mod_vidtrans', // usually = table name
-//        'filearea' => $filearea, // usually = table name
-//        'itemid' => $args[1], // usually = ID of row in table
-//        'contextid' => $context->id, // ID of context
-//        'filepath' => '/' . $args[0] . '/', // any path beginning and ending in /
-//        'filename' => $args[2]); // any filename
+//echo'<script id="template-download" type="text/x-tmpl">
+//{% for (var i=0, file; file=o.files[i]; i++) { %}
+//    <tr class="template-download fade">
+//        {% if (file.error) { %}
+//            <td></td>
+//            <td class="name"><span>{%=file.name%}</span></td>
+//            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+//            <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
+//        {% } else { %}
+//            <td class="preview">{% if (file.thumbnail_url) { %}
+//                <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+//            {% } %}</td>
+//            <td class="name">
+//                <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&\'gallery\'%}" download="{%=file.name%}">{%=file.name%}</a>
+//            </td>
+//            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
+//            <td colspan="2"></td>
+//        {% } %}
+//        <td class="delete">
+//            <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
+//                <i class="icon-trash icon-white"></i>
+//                <span>{%=locale.fileupload.destroy%}</span>
+//            </button>
+//            <input type="checkbox" name="delete" value="1">
+//        </td>
+//    </tr>
+//{% } %}
+//</script>';
 //
-//    $fs = get_file_storage();
-//    $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'], $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);
+//echo'<script src="../qcardloader/js/jquery-1.7.2.js"></script>';
 //
-//    header("Content-Type: " . $file->get_mimetype());
-//    header("Content-Length: " . $file->get_filesize());
-//    $file->readfile();
-//    die();
-//}
+////echo'<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->';
+//echo'<script src="../qcardloader/jq-uploader/js/vendor/jquery.ui.widget.js"></script>';
 //
-//---
-//To force a file download:
+////echo'<!-- The Templates plugin is included to render the upload/download listings -->';
+//echo'<script src="../qcardloader/jq-uploader/js/downloaded/tmpl.min.js"></script>';
 //
-//$file_address = $CFG->wwwroot . '/pluginfile.php/' . $file->get_contextid()
-//                    . '/' . $file->get_component() . '/' . $file->get_filearea()
-//                    . '/' . $file->get_filepath() . $file->get_itemid()
-//                    . '/' . $file->get_filename();
-//					
-//output the header:
-//header('location: ' . $file_address);
-//		http://us.battle.net/d3/en/forum/topic/5889888966
-//		
-//		
-//		    header("Content-Disposition: attachment; filename='{$fileinfo['filename']}'");
+////echo'<!-- The Load Image plugin is included for the preview images and image resizing functionality -->';
+//echo'<script src="../qcardloader/jq-uploader/js/downloaded/load-image.min.js"></script>';
+//
+////echo'<!-- The Canvas to Blob plugin is included for image resizing functionality -->';
+//echo'<script src="../qcardloader/jq-uploader/js/downloaded/canvas-to-blob.min.js"></script>';
+//
+////echo'<!-- Bootstrap JS and Bootstrap Image Gallery are not required, but included for the demo -->';
+//echo'<script src="../qcardloader/jq-uploader/js/downloaded/bootstrap.min.js"></script>';
+//
+//echo'<script src="../qcardloader/jq-uploader/js/downloaded/bootstrap-image-gallery.min.js"></script>';
+//
+//
+////echo'<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->';
+//echo'<script src="../qcardloader/jq-uploader/js/jquery.iframe-transport.js"></script>';
+//
+////echo'<!-- The basic File Upload plugin -->';
+//echo'<script src="../qcardloader/jq-uploader/js/jquery.fileupload.js"></script>';
+//
+////echo'<!-- The File Upload file processing plugin -->';
+//echo'<script src="../qcardloader/jq-uploader/js/jquery.fileupload-fp.js"></script>';
+//
+////echo'<!-- The File Upload user interface plugin -->';
+//echo'script src="../qcardloader/jq-uploader/js/jquery.fileupload-ui.js"></script>';
+//
+////echo'<!-- The localization script -->';
+//echo'<script src="../qcardloader/jq-uploader/js/locale.js"></script>';
+//
+////echo'<!-- The main application script -->';
+//echo'<script src="../qcardloader/jq-uploader/js/main.js"></script>';
+
 ?>
 
 <!--Browser detection-->
