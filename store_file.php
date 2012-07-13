@@ -37,45 +37,67 @@ global $DB, $CFG, $PAGE;
 
 require_login();
 
+$coursename = required_param('coursename', PARAM_TEXT);
+$courseid = required_param('courseid', PARAM_INT);
+$cmid = required_param('cmid', PARAM_INT);
+$contextid = required_param('contextid', PARAM_INT);
+
 $i = 0;
 $fs = get_file_storage();
-    
-print_object($fs);
+
+//Works, but not safe
+//if (($_REQUEST['coursename'] & $_REQUEST['courseid'] & $_REQUEST['cmid'] & $_REQUEST['contextid']) != NULL)
 
 print_object($_FILES);
+print_object($fs);
+
+$newfile = new stdClass();
+$newfile->coursename = $coursename;
+$newfile->courseid = $courseid;
+$newfile->cmid = $cmid;
+$newfile->contextid = $contextid;
+$newfile->userid = $USER->id;
+$newfile->time_modified = date('(m/d/Y H:i:s)', time());
 
 for ($i; $i < count($_FILES['file']['name']); $i++){
     // Prepare file record object
     $fileinfo = array(
     //    'contextid' => $context->id, // ID of context
-        'contextid' => $_REQUEST['contextid'],
+        'contextid' => $contextid,
         'component' => 'mod_qcardloader',     // usually = table name
         'filearea' => 'qcardloader',     // usually = table name
         'itemid' => 0,               // usually = ID of row in table
-        'filepath' => '/' . 'testest' . '/',           // any path beginning and ending in /
+        'filepath' => '/' . 'mod/qcardloader/files' . '/',           // any path beginning and ending in /
         'filename' => $_FILES['file']['name'][$i], // any filename
         'userid' => $USER->id);
-    // Create file containing text 'hello world'
-    $fs->create_file_from_pathname($fileinfo, $_FILES['file']['tmp_name'][0]);
+    // Create file and saves in database "files"
+    $fs->create_file_from_pathname($fileinfo, $_FILES['file']['tmp_name'][$i]);
 
+    $newfile->filename = $_FILES['file']['name'][$i];
+    $newfile->filesize = $_FILES['file']['size'][$i];
+    
+    $DB->insert_record('qcardfiles', $newfile);
+    
+    
+    // Get file
+    $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'],
+            $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename'], $fileinfo['userid']);
 
-// Get file
-$file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'],
-        $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename'], $fileinfo['userid']);
- 
-$file->readfile();
-echo"\n";
-// Read contents
-if ($file) {
-    echo"TOP\n";
+    //Outputs content of file
+    $file->readfile();
+    echo"\n";
     
-    $contents = $file->get_content();
-    print_object($contents);
-    
-    echo"BOT\n";
-} else {
-    // file doesn't exist - do something
-}
+    //Prints out content of file if it exists
+    if ($file) {
+        echo"START\n";
+
+        $contents = $file->get_content();
+        print_object($contents);
+
+        echo"END\n";
+    } else {
+        // file doesn't exist - do something
+    }
 }
 
 //$file_address = $CFG->wwwroot . '/store_file.php/' . $file->get_contextid()

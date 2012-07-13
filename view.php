@@ -52,6 +52,9 @@ require_login($course, true, $cm);
 $context = get_context_instance(CONTEXT_MODULE, $cm->id);
 
 print_object($context);
+echo $course->fullname;
+
+echo $cm->id;
 
 //add_to_log($course->id, 'qcardloader', 'view', "view.php?id={$cm->id}", $qcardloader->name, $cm->id);
 /// Print the page header
@@ -84,7 +87,7 @@ echo $OUTPUT->header();
 
 //	<!-- The file element -- NOTE: it has an ID -->
 //Uploading mulitple files using one input field
-echo"<form enctype='multipart/form-data' action='store_file.php?contextid=$context->id' method = 'POST' id='fileupload'>";
+echo"<form enctype='multipart/form-data' action='store_file.php?coursename=$course->fullname&courseid=$course->id&cmid=$cm->id&contextid=$context->id' method = 'POST' id='fileupload'>";
 
 echo"	<input id='my_file_element' type='file' name='file[]' multiple>";
 echo"	<input type='submit'>";
