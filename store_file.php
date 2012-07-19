@@ -57,7 +57,7 @@ $newfile->courseid = $courseid;
 $newfile->cmid = $cmid;
 $newfile->contextid = $contextid;
 $newfile->userid = $USER->id;
-$newfile->time_modified = date('(m/d/Y H:i:s)', time());
+$newfile->time_created = date('(m/d/Y H:i:s)', time());
 
 for ($i; $i < count($_FILES['file']['name']); $i++){
     // Prepare file record object
@@ -74,7 +74,11 @@ for ($i; $i < count($_FILES['file']['name']); $i++){
     $fs->create_file_from_pathname($fileinfo, $_FILES['file']['tmp_name'][$i]);
 
     $newfile->filename = $_FILES['file']['name'][$i];
-    $newfile->filesize = $_FILES['file']['size'][$i];
+    $newfile->filesize = $_FILES['file']['size'][$i]; 
+    $newfile->component = 'mod_qcardloader';
+    $newfile->filearea = 'qcardloader';
+    $newfile->itemid = 0;
+    $newfile->filepath = '/' . 'mod/qcardloader/files' . '/';
     
     $DB->insert_record('qcardfiles', $newfile);
     

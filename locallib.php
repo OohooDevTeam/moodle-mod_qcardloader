@@ -29,6 +29,28 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+
+function reorderindex(array $source, $conditions_list = array()) {
+    $i = 0;
+    foreach ($source as $key => $val) {
+        if ($key != $i) {
+            unset($source[$key]);
+            $source[$i] = $val;
+        }
+        $i++;
+    }
+
+    foreach ($source as $key => $val) {
+        foreach ($conditions_list as $var) {
+            if ($val === $var) {
+                unset($source[$key]);
+                $source = reorderindex($source, $conditions_list);
+            }
+        }
+    }
+
+    return $source;
+}
 /**
  * Does something really useful with the passed things
  *
