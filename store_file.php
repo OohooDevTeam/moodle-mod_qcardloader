@@ -73,6 +73,7 @@ for ($i; $i < count($_FILES['file']['name']); $i++){
     // Create file and saves in database "files"
     $fs->create_file_from_pathname($fileinfo, $_FILES['file']['tmp_name'][$i]);
 
+    //Stores file info(required)
     $newfile->filename = $_FILES['file']['name'][$i];
     $newfile->filesize = $_FILES['file']['size'][$i]; 
     $newfile->component = 'mod_qcardloader';
@@ -80,6 +81,7 @@ for ($i; $i < count($_FILES['file']['name']); $i++){
     $newfile->itemid = 0;
     $newfile->filepath = '/' . 'mod/qcardloader/files' . '/';
     
+    //Stores file info
     $DB->insert_record('qcardfiles', $newfile);
     
     

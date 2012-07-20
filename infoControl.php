@@ -67,22 +67,19 @@ $download = optional_param('download',NULL, PARAM_TEXT);
 //                    $courseid_array[] = $file->courseid;
 //                    
 //                    $coursename_array[] = $file->coursename;
-//
 //                    
 //                    //echo $file->filename;
 //                
 ////                $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'],
 ////                $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename'], $fileinfo['userid']);
 //                $files = $fs->get_file($file->contextid, $file->filename, $file->userid);
-//                $files->readfile();
-//                
-//                }
-//                
+//                $files->readfile();             
+//                }               
 //                //Filters out the duplicate course ids and names and then reorders them
 //                $conditions_list = array(TRUE, FALSE, NULL);
 //                $unique_course_id = array_unique($courseid_array);
 //                $ordered_course_id = reorderindex($unique_course_id, $conditions_list);    
-//
+
 //                //print_object($ordered_course_id);
 //
 //                $unique_course_name = array_unique($coursename_array);
@@ -104,19 +101,13 @@ $download = optional_param('download',NULL, PARAM_TEXT);
 //                }
 
                 //print_object($course_has_loader);
-
-
             //User !exists
             } else {
                 echo "false";
-
             }
-	}
-        
+	}      
         if (isset($download)){
-            
-            echo "downloaded";
-            
+           
+            echo "downloaded";        
         }
-
 ?>
