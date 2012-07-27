@@ -50,7 +50,7 @@ if ($id) {
 
 require_login($course, true, $cm);
 $context = get_context_instance(CONTEXT_MODULE, $cm->id);
-
+echo date('(m/d/Y H:i:s)', time());
 print_object($context);
 echo $course->fullname;
 

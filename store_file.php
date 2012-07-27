@@ -58,7 +58,7 @@ $newfile->cmid = $cmid;
 $newfile->contextid = $contextid;
 $newfile->userid = $USER->id;
 $newfile->time_created = date('(m/d/Y H:i:s)', time());
-
+//Must change the time_creatd field to a text field since nothing is being stored
 for ($i; $i < count($_FILES['file']['name']); $i++){
     // Prepare file record object
     $fileinfo = array(

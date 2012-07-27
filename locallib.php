@@ -60,3 +60,12 @@ function reorderindex(array $source, $conditions_list = array()) {
 //function qcardloader_do_something_useful(array $things) {
 //    return new stdClass();
 //}
+
+function user_exists($username) {
+	global $DB;
+	if($DB->get_records('user', array('username' => $username))) {
+		return true;
+	}
+
+	return false;
+}
