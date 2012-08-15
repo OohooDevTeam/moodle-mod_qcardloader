@@ -30,9 +30,12 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$module->version   = 2012071900;               // If version == 0 then module will not be installed
-//$module->version   = 2010032200;      // The current module version (Date: YYYYMMDDXX)
-$module->requires  = 2010031900;      // Requires this Moodle version
-$module->cron      = 0;               // Period for cron to check this module (secs)
-$module->component = 'mod_qcardloader'; // To check on upgrade, that module sits in correct place
+//$module->requires = 2010112400; //Moodle 2.0
+$plugin->requires = 2011070100; //Moodle 2.1
 
+//$module->maturity = MATURITY_DEV;
+$module->maturity = MATURITY_ALPHA;
+$module->release = '0.5.0 (Build: 2012081500)';
+$module->component = 'mod_qcardloader';
+
+?>

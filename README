@@ -1,0 +1,13 @@
+Plugin:
+    mod_qcardloader
+
+Description:
+    This plugin is designed to be used with the iPhone app Qcard. It enables
+    professors to upload exercises for students to download and practice on
+    their iPhones.
+
+Prerequisites:
+    N/A
+
+Installation:
+    Copy the folder 'qcardloader' into moodle/mod

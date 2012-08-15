@@ -30,6 +30,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$string['qcardloader:addinstance'] = 'Add a new qcardloader';
+
 $string['modulename'] = 'qcardloader';
 $string['modulenameplural'] = 'qcardloaders';
 $string['modulename_help'] = 'Use the qcardloader module for... | The qcardloader module allows...';
