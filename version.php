@@ -30,8 +30,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
+$module->version = 2012081700;
 //$module->requires = 2010112400; //Moodle 2.0
-$plugin->requires = 2011070100; //Moodle 2.1
+$module->requires = 2011070100; //Moodle 2.1
 
 //$module->maturity = MATURITY_DEV;
 $module->maturity = MATURITY_ALPHA;
