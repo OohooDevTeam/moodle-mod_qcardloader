@@ -1,35 +1,27 @@
 <?php
-
-// This file is part of Moodle - http://moodle.org/
-//
-// Moodle is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-//
-// Moodle is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
- * Internal library of functions for module qcardloader
- *
- * All the qcardloader specific functions, needed to implement the module
- * logic, should go here. Never include this file from your lib.php!
- *
- * @package    mod
- * @subpackage qcardloader
- * @copyright  2011 Your Name
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
+**************************************************************************
+**                              qcardloader                             **
+**************************************************************************
+* @package     mod                                                      **
+* @subpackage  qcardloader                                              **
+* @name        qcardloader                                              **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
 
 defined('MOODLE_INTERNAL') || die();
 
-
+/**
+ * Reorders the arrays indexes consecutively
+ * 
+ * @param array $source This array contains the array to be reindexed
+ * @param array $conditions_list This array contains the conditions for indexing
+ * @return array Returns the reordered array 
+ */
 function reorderindex(array $source, $conditions_list = array()) {
     $i = 0;
     foreach ($source as $key => $val) {
@@ -48,19 +40,16 @@ function reorderindex(array $source, $conditions_list = array()) {
             }
         }
     }
-
     return $source;
 }
-/**
- * Does something really useful with the passed things
- *
- * @param array $things
- * @return object
- */
-//function qcardloader_do_something_useful(array $things) {
-//    return new stdClass();
-//}
 
+/**
+ * This function checks if the user exists or not
+ *
+ * @global moodle_database $DB
+ * @param string $username This string contains the user name
+ * @return boolean Returns whether the user exists or not 
+ */
 function user_exists($username) {
 	global $DB;
 	if($DB->get_records('user', array('username' => $username))) {
@@ -68,4 +57,28 @@ function user_exists($username) {
 	}
 
 	return false;
+}
+
+/**
+ * Selects all the checkboxes
+ */
+function check_all() {
+
+    echo "<script type='text/javascript'>
+
+      checked = false;
+      function checkedAll () {
+        if (checked == false){
+        checked = true
+
+        } else {
+        checked = false
+        }
+
+	for (var i = 1; i < document.getElementById('check').elements.length; i++) {
+	  document.getElementById('check').elements[i].checked = checked;
+	}
+      }
+";
+    echo "</script>";
 }

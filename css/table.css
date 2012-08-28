@@ -1,0 +1,75 @@
+/**
+**************************************************************************
+**                              qcardloader                             **
+**************************************************************************
+* @package     mod                                                      **
+* @subpackage  qcardloader                                              **
+* @name        qcardloader                                              **
+* @copyright   oohoo.biz                                                **
+* @link        http://oohoo.biz                                         **
+* @author      Theodore Pham                                            **
+* @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later **
+**************************************************************************
+**************************************************************************/
+
+.datagrid table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+
+.datagrid {
+    font: normal 12px/150% Arial, Helvetica, sans-serif;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid #DE7D28;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
+
+.datagrid table td, .datagrid table th {
+    padding: 2px 2px;
+}
+
+.datagrid table thead th {
+    background:-webkit-gradient(
+        linear, left top, left bottom, color-stop(0.05, #F7A223), color-stop(1, #DB722C) );
+    background:-moz-linear-gradient( center top, #F7A223 5%, #DB722C 100% );
+    filter:progid:DXImageTransform.Microsoft.gradient(
+        startColorstr='#F7A223', endColorstr='#DB722C');
+    background-color:#F7A223;
+    color:#FFFFFF;
+    font-size: 15px;
+    font-weight: bold;
+    border-left: 1px solid #BF691E;
+}
+
+.datagrid table thead th:first-child {
+    border: none;
+}
+
+.datagrid table tbody td {
+    color: #7F4614;
+    border-left: 1px solid #D9CFB8;
+    font-size: 12px;
+    border-bottom: 1px solid #E1EEF4;
+    font-weight: normal;
+}
+
+.datagrid table tbody .alt td {
+    background: #F0E5CC;
+    color: #7F4614;
+}
+
+.datagrid table tbody td:first-child {
+    border-left: none;
+}
+
+.datagrid table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.cell{
+    text-align:center;
+}

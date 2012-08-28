@@ -35,11 +35,11 @@ $(function () {
             //If url is not included, it will cause error: "SyntaxError: Unexpected token <"
             url: '//jquery-file-upload.appspot.com/',
             maxFileSize: 5000000,
-            acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png|txt)$/i,
             process: [
                 {
                     action: 'load',
-                    fileTypes: /^image\/(gif|jpeg|png)$/,
+                    fileTypes: /^image\/(gif|jpeg|png|txt)$/,
                     maxFileSize: 20000000 // 20MB
                 },
                 {
