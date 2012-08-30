@@ -127,25 +127,6 @@ echo"        <td class='cell'><input type='checkbox' id='$iterator'  name='check
 echo"    </tr>";
 }
 echo "</form>";
-
-
-//echo'<tfoot><tr><td colspan="1">
-//    <div id="paging">
-//    <ul>
-//    <li>
-//    <a href="#">
-//    <span>Previous
-//    </span>
-//    </a>
-//    </li>
-//    <li>
-//    <a href="#" class="active">
-//    <span>1
-//    </span>
-//    </a>
-//    </li>
-//    <li><a href="#"><span>2</span></a></li><li><a href="#"><span>3</span></a></li><li><a href="#"><span>4</span></a></li><li><a href="#"><span>5</span></a></li><li><a href="#"><span>Next</span></a></li></ul>
-//    </div></tr></tfoot>';
 echo'</tbody>';
 echo'</table></div>';
 

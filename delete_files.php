@@ -20,7 +20,7 @@ require_once(dirname(__FILE__).'/lib.php');
 echo $OUTPUT->header();
 
 global $DB;
-//exit();
+
 require_login();
 
 $files = $_REQUEST['files'];

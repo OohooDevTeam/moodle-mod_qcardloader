@@ -26,7 +26,7 @@ function xmldb_qcardloader_upgrade($oldversion) {
 
     $dbman = $DB->get_manager(); // loads ddl manager and xmldb classes
 
-    if ($oldversion < 2012081901) {
+    if ($oldversion < 2012083000) {
     }
 
     return true;

@@ -15,11 +15,10 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$module->version   = 2012081901;
-//$module->requires = 2011033004; //Moodle 2.0
-$module->requires = 2011070100; //Moodle 2.1
+$module->version   = 2012083000;
+$module->requires = 2012062500; //Moodle 2.3
 
 //$module->maturity = MATURITY_DEV;
 $module->maturity = MATURITY_ALPHA;
-$module->release = '0.5.0 (Build: 2012081701)';
+$module->release = '0.5.0 (Build: 2012083000)';
 $module->component = 'mod_qcardloader';

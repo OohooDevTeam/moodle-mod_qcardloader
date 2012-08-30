@@ -19,7 +19,7 @@ require_once(dirname(__FILE__).'/lib.php');
 // Output starts here
 echo $OUTPUT->header();
 
-global $DB, $CFG, $PAGE;
+global $DB;
 
 require_login();
 
@@ -51,7 +51,7 @@ for ($i; $i < count($_FILES['file']['name']); $i++){
         'filepath' => '/' . 'mod/qcardloader/files' . '/',           // any path beginning and ending in /
         'filename' => $_FILES['file']['name'][$i], // any filename
         'userid' => $USER->id);
-    
+
     // Create file and saves in database "files"
     $fs->create_file_from_pathname($fileinfo, $_FILES['file']['tmp_name'][$i]);
 
