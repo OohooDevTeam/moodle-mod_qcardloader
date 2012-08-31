@@ -17,7 +17,7 @@
     xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
 >
   <TABLES>
-    <TABLE NAME="qcardloader" COMMENT="Default comment for qcardloader, please edit me" NEXT="qcardfiles">
+    <TABLE NAME="qcardloader" COMMENT="Default" NEXT="qcardfiles">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="name"/>
         <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for moodle instances" PREVIOUS="id" NEXT="course"/>
@@ -44,7 +44,7 @@
       </INDEXES>
     </TABLE>
 
-    <TABLE NAME="qcardfiles" COMMENT="Default comment for qcardloader, please edit me" PREVIOUS="qcardloader">
+    <TABLE NAME="qcardfiles" COMMENT="Table to store all files" PREVIOUS="qcardloader">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" NEXT="time_modified"/>
         <FIELD NAME="time_modified" TYPE="text" LENGTH="medium" NOTNULL="true" SEQUENCE="false" PREVIOUS="id" NEXT="coursename"/>

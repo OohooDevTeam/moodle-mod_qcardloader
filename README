@@ -4,7 +4,11 @@ Plugin:
 Description:
     This plugin is designed to be used with the iPhone app Qcard. It enables
     professors to upload exercises for students to download and practice on
-    their iPhones.
+    their iPhones. Professors should upload the text file with both the word
+    and the translation in English (IE. Bonjour/Hello) as well as the language
+    file which contains the phonetics of each word.
+    This site (http://www.speech.cs.cmu.edu/tools/lmtool.html) will generate a
+    language file.
 
 Prerequisites:
     N/A
